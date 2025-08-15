@@ -19,28 +19,34 @@ body {
 
 /* Header */
 .header {
-    background-color: white;
+    background-color: #fff;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
+    width: 100%;
     z-index: 1000;
-    transition: all 0.3s ease;
 }
 
 .header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 20px;
+    padding: 15px 20px;
 }
 
 .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+.logo-img {
+    height: 24px;
+    width: auto;
+    display: block;
 }
 
 .nav-menu {
@@ -327,3 +333,4 @@ body {
     }
 
 }
+
