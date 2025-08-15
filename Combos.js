@@ -127,9 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Populate combos and add listeners
     populateCombos();
     
-    // Add event listener to each combo button
     document.querySelectorAll('.combo-btn').forEach(button => {
         button.addEventListener('click', () => {
             alert('Has hecho clic en Reservar. ¡Gracias!');
