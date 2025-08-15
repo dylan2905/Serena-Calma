@@ -13,8 +13,7 @@ const galleryData = [
     { image: "/Imagenes/IMG_1583.JPG" },
     { image: "/Imagenes/IMG_1573.JPG" },
     { image: "/Imagenes/IMG_1578.JPG" },
-    { image: "/Imagenes/IMG_1582.JPG" },
-    { image: "/Imagenes/IMG_1573.JPG" }
+    { image: "/Imagenes/IMG_1582.JPG" }
 ];
 
 let currentImageIndex = 0;
@@ -154,4 +153,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }, index * 100);
         observer.observe(item);
     });
+
 });
