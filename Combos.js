@@ -1,4 +1,4 @@
-// Combos data
+// Data for the combos
 const combosData = [
     {
         name: "Combo Relajación Total",
@@ -11,12 +11,45 @@ const combosData = [
         ],
         price: "$150.000"
     },
-    // ... otros combos
+    {
+        name: "Combo Belleza Express",
+        image: "/Imagenes/IMG_1578.JPG",
+        description: "Servicios rápidos y efectivos para lucir radiante en poco tiempo.",
+        details: [
+            "Manicura y pedicura",
+            "Masaje de cuello y hombros",
+            "Maquillaje de día"
+        ],
+        price: "$90.000"
+    },
+    {
+        name: "Combo Renovación Facial",
+        image: "/Imagenes/IMG_1582.JPG",
+        description: "Especialmente diseñado para revitalizar y rejuvenecer tu piel.",
+        details: [
+            "Limpieza facial profunda",
+            "Mascarilla hidratante",
+            "Masaje facial"
+        ],
+        price: "$120.000"
+    },
+    {
+        name: "Combo Día de Spa",
+        image: "/Imagenes/IMG_1568.JPG",
+        description: "Disfruta de una experiencia de lujo y bienestar de cuerpo completo.",
+        details: [
+            "Masaje con piedras calientes",
+            "Exfoliación y envoltura corporal",
+            "Hidratación capilar",
+            "Manicura y pedicura spa"
+        ],
+        price: "$200.000"
+    }
 ];
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile menu toggle
+    // 1. Mobile menu toggle logic
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
 
@@ -27,9 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Populate combos
+    // 2. Populate combos dynamically
     const comboContainer = document.querySelector('.combos-grid');
     function populateCombos() {
+        if (!comboContainer) {
+            console.error('Error: El contenedor de combos no se encontró.');
+            return;
+        }
         combosData.forEach(combo => {
             const comboCard = document.createElement('div');
             comboCard.classList.add('combo-card');
@@ -52,14 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     populateCombos();
 
-    // Event listener to each combo button
+    // 3. Add event listener to each combo button
     document.querySelectorAll('.combo-btn').forEach(button => {
         button.addEventListener('click', () => {
             alert('Has hecho clic en Reservar. ¡Gracias!');
         });
     });
 
-    // Animation on scroll
+    // 4. Animation on scroll
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -78,18 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
     });
 
-    // Otros scripts
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('.header');
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.backdropFilter = 'blur(10px)';
-        } else {
-            header.style.background = 'white';
-            header.style.backdropFilter = 'none';
-        }
-    });
-
+    // 5. Smooth scrolling for internal links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -99,4 +125,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});
+
+// 6. Header scroll effect (outside DOMContentLoaded as it doesn't depend on DOM)
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    if (header) { // Check if header exists
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(255, 255, 255, 0.95)';
+            header.style.backdropFilter = 'blur(10px)';
+        } else {
+            header.style.background = 'white';
+            header.style.backdropFilter = 'none';
+        }
+    }
 });
