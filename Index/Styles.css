@@ -1,0 +1,351 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    color: #000;
+    background-color: #fffae6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* espacio entre logo y texto */
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+.logo-img {
+    height: 24px; /* tamaño pequeño */
+    width: auto;
+    display: block;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:visited {
+    color: #000; /* evita el morado de link visitado */
+}
+
+.nav-link.activo {
+    color: #000000;
+    font-weight: 700; /* negrita más marcada */
+    border-bottom: 1px solid #000000;
+}
+
+.nav-link:hover {
+    color: #666;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #000;
+    transition: color 0.3s ease;
+}
+
+.search-btn:hover {
+    color: #666;
+}
+
+/* Hero Section */
+.hero {
+    margin-top: 80px;
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* llena el espacio sin deformarse */
+    filter: brightness(70%); /* oscurece un poco para que el texto resalte */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.hero-content p {
+    font-size: 24px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+
+/* Services Section */
+.services {
+    padding: 80px 0;
+    background-color: #fffae6;
+}
+
+.services h2 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 60px;
+    color: #000;
+    font-weight: normal;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.service-card {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-image img {
+    width: 100%;
+    height: 250px; /* Igual al alto del contenedor */
+    object-fit: cover; /* Recorta y mantiene proporción */
+    display: block;
+}
+
+.service-image .image-placeholder {
+    height: 100%;
+    background-color: #f8f8f8;
+    border: none;
+    border-radius: 0;
+}
+
+.service-card h3 {
+    padding: 20px;
+    font-size: 24px;
+    color: #000;
+    font-weight: normal;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* espacio entre cartas */
+}
+
+/* About Section */
+.about {
+    padding: 60px 0;
+    background-color: #fff;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.about-content strong {
+    color: #000;
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-btn i {
+    font-size: 30px;
+    color: #fff;
+}
+
+/* Responsive Design */
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* Estilos del header para móviles */
+    .header .container {
+        padding: 15px 20px; /* Asegura un padding consistente */
+        justify-content: space-between;
+    }
+
+    /* Ocultar la navegación principal en móviles */
+    .nav {
+        display: none;
+        position: absolute;
+        top: 60px; /* Ajusta este valor si tu header es más alto */
+        right: 20px;
+        width: 200px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        flex-direction: column;
+        padding: 1rem;
+        border-radius: 8px;
+        z-index: 999;
+    }
+
+    /* Mostrar el menú cuando tiene la clase 'active' */
+    .nav.active {
+        display: flex;
+    }
+
+    /* Mostrar el botón hamburguesa */
+    .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    
+    /* Ajustes para la lista del menú desplegable */
+    .nav a {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* Reajustes de diseño para móviles */
+    .hero-content h1 {
+        font-size: 32px;
+    }
+    
+    .hero-content p {
+        font-size: 18px;
+    }
+    
+    .services h2 {
+        font-size: 32px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: justify;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes adicionales para móviles muy pequeños */
+    .hero {
+        height: 400px;
+    }
+    
+    .hero-content h1 {
+        font-size: 28px;
+    }
+    
+    .hero-content p {
+        font-size: 16px;
+    }
+    
+    .services {
+        padding: 60px 0;
+    }
+    
+    .whatsapp-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .whatsapp-btn i {
+        font-size: 24px;
+    }
+
+}
