@@ -99,15 +99,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Mobile menu toggle
-const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-
-mobileMenuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    mobileMenuToggle.classList.toggle('active');
-});
-
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -140,6 +131,18 @@ const observer = new IntersectionObserver((entries) => {
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
     console.log('[v2] Página de fotos cargada correctamente');
+    
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+        });
+    }
+
     populateGallery();
     
     const galleryItems = document.querySelectorAll('.gallery-item');
@@ -153,5 +156,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }, index * 100);
         observer.observe(item);
     });
-
 });
