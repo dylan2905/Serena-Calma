@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Georgia', serif;
     line-height: 1.6;
     color: #333;
     background-color: #fffae6;
@@ -325,4 +325,5 @@ body {
     .map-container iframe {
         height: 300px;
     }
+
 }
