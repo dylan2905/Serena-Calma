@@ -107,8 +107,7 @@ const observerOptions = {
 
 const observer = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
+        if (entry.is.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
         }
     });
@@ -127,9 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Populate combos and add listeners
     populateCombos();
     
+    // Add event listener to each combo button
     document.querySelectorAll('.combo-btn').forEach(button => {
         button.addEventListener('click', () => {
             alert('Has hecho clic en Reservar. ¡Gracias!');
