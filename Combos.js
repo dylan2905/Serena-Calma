@@ -1,51 +1,3 @@
-// Combos data
-const combosData = [
-    {
-        name: "Combo Relajación Total",
-        image: "/Imagenes/IMG_1573.JPG",
-        description: "Un tratamiento completo para liberar el estrés y renovar tu cuerpo.",
-        details: [
-            "Masaje de cuerpo completo",
-            "Exfoliación corporal",
-            "Hidratación facial"
-        ],
-        price: "$150.000"
-    },
-    {
-        name: "Combo Belleza Express",
-        image: "/Imagenes/IMG_1578.JPG",
-        description: "Servicios rápidos y efectivos para lucir radiante en poco tiempo.",
-        details: [
-            "Manicura y pedicura",
-            "Masaje de cuello y hombros",
-            "Maquillaje de día"
-        ],
-        price: "$90.000"
-    },
-    {
-        name: "Combo Renovación Facial",
-        image: "/Imagenes/IMG_1582.JPG",
-        description: "Especialmente diseñado para revitalizar y rejuvenecer tu piel.",
-        details: [
-            "Limpieza facial profunda",
-            "Mascarilla hidratante",
-            "Masaje facial"
-        ],
-        price: "$120.000"
-    },
-    {
-        name: "Combo Día de Spa",
-        image: "/Imagenes/IMG_1568.JPG",
-        description: "Disfruta de una experiencia de lujo y bienestar de cuerpo completo.",
-        details: [
-            "Masaje con piedras calientes",
-            "Exfoliación y envoltura corporal",
-            "Hidratación capilar",
-            "Manicura y pedicura spa"
-        ],
-        price: "$200.000"
-    }
-];
 
 // DOM Elements
 const comboContainer = document.querySelector('.combos-grid');
@@ -146,3 +98,4 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
     });
 });
+
