@@ -1,4 +1,4 @@
-// Data for the gallery images
+// Gallery data
 const galleryData = [
     { image: "/Imagenes/IMG_1478.JPG" },
     { image: "/Imagenes/IMG_1475.JPG" },
@@ -17,126 +17,140 @@ const galleryData = [
 ];
 
 let currentImageIndex = 0;
-let modal, modalImage, closeModal, galleryGrid;
 
-// Initialize page
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mobile menu toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+// DOM Elements
+const modal = document.getElementById('imageModal');
+const modalImage = document.getElementById('modalImage');
+const closeModal = document.querySelector('.close-modal');
+const galleryGrid = document.querySelector('.gallery-grid');
 
-    if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
-    }
+// Populates gallery images
+function populateGallery() {
+    galleryData.forEach((data, index) => {
+        const item = document.createElement('div');
+        item.classList.add('gallery-item');
+        item.innerHTML = `<img src="${data.image}" alt="Galería de Serena Calma">`;
+        item.addEventListener('click', () => openModal(index));
+        galleryGrid.appendChild(item);
+    });
+}
 
-    // 2. Populate gallery images dynamically
-    galleryGrid = document.querySelector('.gallery-grid');
-    if (galleryGrid) {
-        galleryData.forEach((data, index) => {
-            const item = document.createElement('div');
-            item.classList.add('gallery-item');
-            item.innerHTML = `<img src="${data.image}" alt="Galería de Serena Calma">`;
-            item.addEventListener('click', () => openModal(index));
-            galleryGrid.appendChild(item);
-        });
+// Header scroll effect
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    if (window.scrollY > 100) {
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        header.style.backdropFilter = 'blur(10px)';
     } else {
-        console.error('Error: El contenedor de la galería no se encontró.');
+        header.style.background = 'white';
+        header.style.backdropFilter = 'none';
     }
-
-    // 3. Modal elements and listeners
-    modal = document.getElementById('imageModal');
-    modalImage = document.getElementById('modalImage');
-    closeModal = document.querySelector('.close-modal');
-
-    if (modal && modalImage && closeModal) {
-        closeModal.addEventListener('click', closeModalFunction);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModalFunction();
-            }
-        });
-        document.addEventListener('keydown', (e) => {
-            if (modal.style.display === 'block') {
-                if (e.key === 'Escape') closeModalFunction();
-                else if (e.key === 'ArrowLeft') changeImage(-1);
-                else if (e.key === 'ArrowRight') changeImage(1);
-            }
-        });
-    }
-
-    // 4. Animation on scroll
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach((item) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(30px)';
-        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(item);
-    });
-
-    // 5. Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
 });
 
-// 6. Modal functions
+// Open modal function
 function openModal(index) {
-    if (modal && modalImage) {
-        currentImageIndex = index;
-        const data = galleryData[index];
-        modalImage.src = data.image;
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
+    currentImageIndex = index;
+    const data = galleryData[index];
+    
+    modalImage.src = data.image;
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 }
+
+// Close modal function
 function closeModalFunction() {
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
+
+// Change image in modal
 function changeImage(direction) {
     currentImageIndex += direction;
+    
     if (currentImageIndex >= galleryData.length) {
         currentImageIndex = 0;
     } else if (currentImageIndex < 0) {
         currentImageIndex = galleryData.length - 1;
     }
+    
     const data = galleryData[currentImageIndex];
-    if (modalImage) {
-        modalImage.src = data.image;
-    }
+    modalImage.src = data.image;
 }
 
-// 7. Header scroll effect
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('.header');
-    if (header) { // Check if header exists
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.backdropFilter = 'blur(10px)';
-        } else {
-            header.style.background = 'white';
-            header.style.backdropFilter = 'none';
+// Event listeners
+closeModal.addEventListener('click', closeModalFunction);
+
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        closeModalFunction();
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (modal.style.display === 'block') {
+        if (e.key === 'Escape') {
+            closeModalFunction();
+        } else if (e.key === 'ArrowLeft') {
+            changeImage(-1);
+        } else if (e.key === 'ArrowRight') {
+            changeImage(1);
         }
     }
+});
+
+// Mobile menu toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    mobileMenuToggle.classList.toggle('active');
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Animation on scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('[v2] Página de fotos cargada correctamente');
+    populateGallery();
+    
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, index * 100);
+        observer.observe(item);
+    });
 });
