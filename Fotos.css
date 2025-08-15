@@ -38,7 +38,7 @@ body {
 
 .nav-brand h1 {
     font-size: 1.8rem;
-    color: #333;
+    color: #000000;
     font-weight: 300;
 }
 
@@ -58,7 +58,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #8B4513;
+    color: #000000;
 }
 
 .nav-link.active::after {
@@ -68,7 +68,7 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #8B4513;
+    background-color: #000000;
 }
 
 .search-btn {
@@ -343,4 +343,5 @@ body {
         bottom: 20px;
         right: 20px;
     }
+
 }
