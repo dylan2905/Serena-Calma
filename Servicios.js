@@ -18,12 +18,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Acordeones de servicios
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const accordionItem = header.parentNode;
+            const content = accordionItem.querySelector('.accordion-content');
+            const icon = header.querySelector('.accordion-icon');
+
+            // Cerrar todos los otros acordeones
+            document.querySelectorAll('.accordion-content').forEach(otherContent => {
+                if (otherContent !== content) {
+                    otherContent.classList.remove('active');
+                }
+            });
+            document.querySelectorAll('.accordion-icon').forEach(otherIcon => {
+                if (otherIcon !== icon) {
+                    otherIcon.classList.remove('rotated');
+                }
+            });
+
+            // Alternar el acordeón actual
+            content.classList.toggle('active');
+            icon.classList.toggle('rotated');
+        });
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
     // Animación de entrada para los elementos del acordeón
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -39,46 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
         item.style.transform = 'translateY(20px)';
         item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
         observer.observe(item);
-    });
-});
-
-// Función para alternar acordeones (MOVIDO FUERA DE DOMContentLoaded, puede ser global)
-document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
-        const accordionItem = header.parentNode;
-        const content = accordionItem.querySelector('.accordion-content');
-        const icon = header.querySelector('.accordion-icon');
-
-        // Cerrar todos los otros acordeones
-        document.querySelectorAll('.accordion-content').forEach(otherContent => {
-            if (otherContent !== content) {
-                otherContent.classList.remove('active');
-            }
-        });
-
-        document.querySelectorAll('.accordion-icon').forEach(otherIcon => {
-            if (otherIcon !== icon) {
-                otherIcon.classList.remove('rotated');
-            }
-        });
-
-        // Alternar el acordeón actual
-        content.classList.toggle('active');
-        icon.classList.toggle('rotated');
-    });
-});
-
-// Smooth scrolling para navegación
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
     });
 });
 
