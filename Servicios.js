@@ -1,5 +1,5 @@
-// Menú hamburguesa responsive (MOVIDO DENTRO DE DOMContentLoaded)
 document.addEventListener('DOMContentLoaded', () => {
+    // Menú hamburguesa responsive
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("nav-menu");
 
