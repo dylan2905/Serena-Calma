@@ -1,175 +1,155 @@
+/* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Georgia', serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #fffae6;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Playfair Display', serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fffae6;
 }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
 /* Header */
 .header {
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: fixed;
-    top: 0; width: 100%;
-    z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: fixed; top: 0; width: 100%; z-index: 1000;
 }
 .header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    position: relative; /* para posicionar el panel del menú */
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 20px; position: relative;
 }
 
-.logo { display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: bold; color: #000; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: 700; color: #000; }
 .logo-img { height: 24px; width: auto; display: block; }
 
-/* ====== MENÚ (desktop por defecto) ====== */
+/* ===== Menú: base (oculto por defecto) ===== */
 .nav {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+  display: none;              /* oculto por defecto (móvil) */
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #fff;
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1100;
+  min-width: 200px;
 }
+.nav.active { display: flex; }
+
 .nav-link {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    position: relative;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.2s ease;
 }
 .nav-link:hover,
-.nav-link.active { color: #020202; }
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px; left: 0; right: 0;
-    height: 2px; background-color: #000000;
-}
+.nav-link.active { color: #000; }
 
-/* Botón hamburguesa (oculto en desktop) */
+/* Botón hamburguesa */
 .menu-toggle {
-    display: none;
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: #333;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px;
+  border: none; background: transparent; cursor: pointer; color: #333;
+  font-size: 1.4rem;
 }
 
-/* ====== Responsive ====== */
-@media (max-width: 768px) {
-    /* Ocultar menú por defecto en móvil */
-    .nav {
-        display: none;
-        position: absolute;
-        top: calc(100% + 8px); /* debajo del header */
-        right: 0;
-        background: #fff;
-        padding: 12px 16px;
-        border-radius: 8px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-        flex-direction: column;
-        gap: 12px;
-        z-index: 1100;
-        min-width: 180px;
-    }
-    /* Mostrar cuando JS agrega .active */
-    .nav.active { display: flex; }
-
-    /* Mostrar el botón hamburguesa */
-    .menu-toggle { display: block; }
+/* ===== Desktop ===== */
+@media (min-width: 769px) {
+  .menu-toggle { display: none; }
+  .nav {
+    position: static;
+    display: flex;            /* visible en desktop */
+    flex-direction: row;
+    gap: 2rem;
+    box-shadow: none; background: transparent; padding: 0; border-radius: 0; min-width: 0;
+  }
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
-    background: url('/Imagenes/fondo.png') no-repeat center center/cover;
-    height: 250px;
-    display: flex; align-items: center; justify-content: center;
-    margin-top: 80px; position: relative;
+  background: url('/Imagenes/fondo.png') no-repeat center center/cover;
+  height: 250px;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 80px; position: relative;
 }
-.hero::after {
-    content: ''; position: absolute; inset: 0;
-    background-color: rgba(0, 0, 0, 0.4); z-index: 1;
-}
-.hero-content { text-align: center; color: white; z-index: 2; }
+.hero::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 1; }
+.hero-content { text-align: center; color: #fff; z-index: 2; }
 .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem; font-weight: 700; color: white;
-    margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-/* Combos Section */
-.combos-section { padding: 80px 0; background-color: white; }
+/* Combos */
+.combos-section { padding: 80px 0; background: #fff; }
 .combos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem; max-width: 900px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem; max-width: 900px; margin: 0 auto;
 }
 .combo-card {
-    border-radius: 15px; overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+  border-radius: 15px; overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform .3s ease, box-shadow .3s ease;
+  cursor: pointer;
 }
 .combo-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+
 .combo-image { position: relative; height: 500px; overflow: hidden; }
 .combo-image img {
-    width: 100%; height: 100%; object-fit: contain;
-    transition: transform 0.5s ease-in-out; background-color: #f9f9f9;
+  width: 100%; height: 100%; object-fit: contain;
+  transition: transform .5s ease-in-out; background: #f9f9f9;
 }
 .combo-card:hover img { transform: scale(1.05); }
+
 .combo-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
-    display: flex; align-items: flex-end; justify-content: center;
-    color: white; text-align: center; transition: background 0.3s ease;
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.2) 0%, rgba(0,0,0,.7) 100%);
+  display: flex; align-items: flex-end; justify-content: center;
+  color: #fff; text-align: center; transition: background .3s ease;
 }
 .combo-card:hover .combo-overlay {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,.1) 0%, rgba(0,0,0,.8) 100%);
 }
 .combo-content { padding: 2rem; }
-.combo-title {
-    font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;
-    margin-bottom: 0.5rem; line-height: 1.2;
-}
-.combo-brand { font-size: 0.9rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 1.5rem; opacity: 0.9; }
+
 .combo-price {
-    background: linear-gradient(135deg, #B19CD9 0%, #9B7EBF 100%);
-    color: white; padding: 0.8rem 2rem; border-radius: 25px;
-    font-size: 1.5rem; font-weight: 700; display: inline-block;
-    box-shadow: 0 5px 15px rgba(155, 126, 191, 0.3);
+  background: linear-gradient(135deg, #B19CD9 0%, #9B7EBF 100%);
+  color: #fff; padding: .8rem 2rem; border-radius: 25px;
+  font-size: 1.5rem; font-weight: 700; display: inline-block;
+  box-shadow: 0 5px 15px rgba(155,126,191,0.3);
 }
 
-/* WhatsApp Button */
+/* WhatsApp */
 .whatsapp-btn {
-    position: fixed; bottom: 30px; right: 30px;
-    width: 60px; height: 60px; background: #25D366;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    color: white; text-decoration: none; font-size: 1.8rem;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-    transition: all 0.3s ease; z-index: 1000; animation: pulse 2s infinite;
+  position: fixed; bottom: 30px; right: 30px;
+  width: 60px; height: 60px; background: #25D366;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: #fff; text-decoration: none; font-size: 1.8rem;
+  box-shadow: 0 4px 15px rgba(37,211,102,.3);
+  transition: all .3s ease; z-index: 1000; animation: pulse 2s infinite;
 }
-.whatsapp-btn:hover { background-color: #128C7E; transform: scale(1.1); }
+.whatsapp-btn:hover { background: #128C7E; transform: scale(1.1); }
 @keyframes pulse {
-    0% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
-    50% { box-shadow: 0 4px 25px rgba(37, 211, 102, 0.5); }
-    100% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+  0% { box-shadow: 0 4px 15px rgba(37,211,102,.3); }
+  50% { box-shadow: 0 4px 25px rgba(37,211,102,.5); }
+  100% { box-shadow: 0 4px 15px rgba(37,211,102,.3); }
 }
 
 /* Responsive ajustes visuales */
 @media (max-width: 768px) {
-    .hero-title { font-size: 2.5rem; }
-    .combos-grid { grid-template-columns: 1fr; gap: 2rem; padding: 0 1rem; }
-    .combo-title { font-size: 1.6rem; }
-    .combo-price { font-size: 1.3rem; padding: 0.6rem 1.5rem; }
-    .whatsapp-btn { width: 50px; height: 50px; font-size: 1.5rem; bottom: 20px; right: 20px; }
+  .hero-title { font-size: 2.5rem; }
+  .combos-grid { grid-template-columns: 1fr; gap: 2rem; padding: 0 1rem; }
+  .combo-price { font-size: 1.3rem; padding: .6rem 1.5rem; }
+  .whatsapp-btn { width: 50px; height: 50px; font-size: 1.5rem; bottom: 20px; right: 20px; }
 }
 @media (max-width: 480px) {
-    .hero { height: 300px; }
-    .hero-title { font-size: 2rem; }
-    .combos-section { padding: 60px 0; }
-    .combo-image { height: 250px; }
-    .combo-content { padding: 1.5rem; }
+  .hero { height: 300px; }
+  .hero-title { font-size: 2rem; }
+  .combos-section { padding: 60px 0; }
+  .combo-image { height: 250px; }
+  .combo-content { padding: 1.5rem; }
 }
