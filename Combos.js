@@ -12,14 +12,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Mobile menu toggle
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (mobileToggle && navMenu) {
-        mobileToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            mobileToggle.classList.toggle('active');
+    // Menú hamburguesa (igual que en Servicios.js)
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+        });
+
+        navMenu.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                }
+            });
         });
     }
 
@@ -28,17 +35,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     comboCards.forEach(card => {
         card.addEventListener('click', function() {
-            // Add click animation
+            // Animación de click
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = 'translateY(-10px)';
             }, 150);
             
-            // Open WhatsApp with combo inquiry
-            const price = this.querySelector('.combo-price').textContent;
-            const message = `Hola! Me interesa el combo especial de ${price}. ¿Podrían darme más información?`;
-            const whatsappUrl = `https://wa.me/573017838667?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
+            // WhatsApp con precio
+            const priceElement = this.querySelector('.combo-price');
+            if (priceElement) {
+                const price = priceElement.textContent;
+                const message = `Hola! Me interesa el combo especial de ${price}. ¿Podrían darme más información?`;
+                const whatsappUrl = `https://wa.me/573017838667?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            }
         });
     });
 
@@ -57,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observe combo cards for animation
+    // Animación de entrada para los combos
     comboCards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(30px)';
