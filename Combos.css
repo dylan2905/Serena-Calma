@@ -2,7 +2,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Playfair Display', serif;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   color: #333;
   background-color: #fffae6;
@@ -21,12 +21,16 @@ body {
   padding: 15px 20px; position: relative;
 }
 
-.logo { display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: 700; color: #000; }
+.logo { 
+  display: flex; align-items: center; gap: 8px; 
+  font-size: 24px; font-weight: 700; color: #000; 
+  font-family: 'Playfair Display', serif; /* 👈 Logo con Playfair */
+}
 .logo-img { height: 24px; width: auto; display: block; }
 
 /* ===== Menú: base (oculto por defecto) ===== */
 .nav {
-  display: none;              /* oculto por defecto (móvil) */
+  display: none;              
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
@@ -45,6 +49,7 @@ body {
   text-decoration: none;
   color: #333;
   font-weight: 600;
+  font-family: 'Inter', sans-serif; /* 👈 Links con Inter */
   transition: color 0.2s ease;
 }
 .nav-link:hover,
@@ -63,7 +68,7 @@ body {
   .menu-toggle { display: none; }
   .nav {
     position: static;
-    display: flex;            /* visible en desktop */
+    display: flex;            
     flex-direction: row;
     gap: 2rem;
     box-shadow: none; background: transparent; padding: 0; border-radius: 0; min-width: 0;
@@ -80,7 +85,7 @@ body {
 .hero::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 1; }
 .hero-content { text-align: center; color: #fff; z-index: 2; }
 .hero-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', serif; /* 👈 Hero con Playfair */
   font-size: 3.5rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
