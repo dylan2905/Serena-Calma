@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Combos - Serena Calma</title>
-    <link rel="stylesheet" href="Combos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Combos.css" />
+
+    <!-- Fuentes / Iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
-   <header class="header">
+    <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="/Imagenes/Logo serena.png" class="logo-img" alt="Logo Serena Calma">
+                <img src="/Imagenes/Logo serena.png" class="logo-img" alt="Logo Serena Calma" />
                 <span>Serena Calma</span>
             </div>
 
             <!-- Botón hamburguesa -->
-            <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-                <i class="fas fa-bars"></i>
-            </div>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-controls="nav-menu" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
             <!-- Menú -->
             <nav class="nav" id="nav-menu">
@@ -43,7 +47,7 @@
             <div class="combos-grid">
                 <div class="combo-card">
                     <div class="combo-image">
-                        <img src="/Imagenes/combo1.png" alt="Combo Especial de 30.000 pesos">
+                        <img src="/Imagenes/combo1.png" alt="Combo Especial de 30.000 pesos" />
                         <div class="combo-overlay">
                             <div class="combo-content">
                                 <span class="combo-price">$30.000</span>
@@ -54,7 +58,7 @@
 
                 <div class="combo-card">
                     <div class="combo-image">
-                        <img src="/Imagenes/combo2.png" alt="Combo Especial de 70.000 pesos">
+                        <img src="/Imagenes/combo2.png" alt="Combo Especial de 70.000 pesos" />
                         <div class="combo-overlay">
                             <div class="combo-content">
                                 <span class="combo-price">$70.000</span>
@@ -62,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><!-- .combos-grid -->
         </div>
     </section>
 
@@ -70,6 +74,7 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- JS -->
     <script src="Combos.js"></script>
 </body>
 </html>
