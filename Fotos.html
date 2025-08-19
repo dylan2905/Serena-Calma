@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fotos - Serena Calma</title>
-    <link rel="stylesheet" href="Fotos.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Fotos.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <div class="nav-brand">
-                <h1>Serena Calma</h1>
+            <div class="logo">
+                <img src="/Imagenes/Logo serena.png" class="logo-img" alt="Logo Serena Calma" />
+                <span>Serena Calma</span>
             </div>
+
+            <!-- Menú de navegación -->
             <nav class="nav-menu">
-                <a href="/Index/Index.html" class="nav-link">Inicio</a>
-                <a href="/Servicios/Servicios.html" class="nav-link">Servicios</a>
-                <a href="fotos.html" class="nav-link active">Fotos</a>
-                <a href="/Combos/Combos.html" class="nav-link">Combos</a>
-                <a href="/Contacto/Contacto.html" class="nav-link">Contacto</a>
+                <a href="Index.html" class="nav-link">Inicio</a>
+                <a href="Servicios.html" class="nav-link">Servicios</a>
+                <a href="Fotos.html" class="nav-link active">Fotos</a>
+                <a href="Combos.html" class="nav-link">Combos</a>
+                <a href="Contacto.html" class="nav-link">Contacto</a>
             </nav>
-            <div class="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <!-- Botón hamburguesa -->
+            <div class="mobile-menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
             </div>
         </div>
     </header>
@@ -41,11 +44,11 @@
                 <p>Descubre nuestras instalaciones y los resultados de nuestros servicios de belleza y bienestar.</p>
             </div>
 
-            <div class="gallery-grid">
-                </div>
+            <div class="gallery-grid"></div>
         </div>
     </section>
-    
+
+    <!-- Modal -->
     <div class="modal" id="imageModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -61,13 +64,10 @@
         </div>
     </div>
 
-    <a href="https://wa.me/573017838667" class="whatsapp-btn" target="_blank">
+    <a href="https://wa.me/573017838667" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script src="Fotos.js"></script>
 </body>
 </html>
-
-
-
