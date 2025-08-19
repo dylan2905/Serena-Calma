@@ -50,10 +50,7 @@ window.addEventListener('scroll', () => {
 // Open modal function
 function openModal(index) {
     currentImageIndex = index;
-    const data = galleryData[index];
-    
-    modalImage.src = data.image;
-    
+    modalImage.src = galleryData[index].image;
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
@@ -67,67 +64,53 @@ function closeModalFunction() {
 // Change image in modal
 function changeImage(direction) {
     currentImageIndex += direction;
-    
-    if (currentImageIndex >= galleryData.length) {
-        currentImageIndex = 0;
-    } else if (currentImageIndex < 0) {
-        currentImageIndex = galleryData.length - 1;
-    }
-    
-    const data = galleryData[currentImageIndex];
-    modalImage.src = data.image;
+    if (currentImageIndex >= galleryData.length) currentImageIndex = 0;
+    if (currentImageIndex < 0) currentImageIndex = galleryData.length - 1;
+    modalImage.src = galleryData[currentImageIndex].image;
 }
 
 // Event listeners
 closeModal.addEventListener('click', closeModalFunction);
-
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        closeModalFunction();
-    }
-});
-
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModalFunction(); });
 document.addEventListener('keydown', (e) => {
     if (modal.style.display === 'block') {
-        if (e.key === 'Escape') {
-            closeModalFunction();
-        } else if (e.key === 'ArrowLeft') {
-            changeImage(-1);
-        } else if (e.key === 'ArrowRight') {
-            changeImage(1);
-        }
+        if (e.key === 'Escape') closeModalFunction();
+        if (e.key === 'ArrowLeft') changeImage(-1);
+        if (e.key === 'ArrowRight') changeImage(1);
     }
 });
 
-// Mobile menu toggle
+/* ====== Hamburguesa: mostrar/ocultar ====== */
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
-mobileMenuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    mobileMenuToggle.classList.toggle('active');
-});
+if (mobileMenuToggle && navMenu) {
+    mobileMenuToggle.addEventListener('click', () => {
+        const opened = navMenu.classList.toggle('active');
+        mobileMenuToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
+    });
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+    // Cerrar automáticamente al hacer click en un enlace (solo móvil)
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+
+    // Al pasar a escritorio, asegurar que el panel quede cerrado
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navMenu.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
         }
     });
-});
+}
 
 // Animation on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -139,9 +122,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('[v2] Página de fotos cargada correctamente');
     populateGallery();
-    
     const galleryItems = document.querySelectorAll('.gallery-item');
     galleryItems.forEach((item, index) => {
         item.style.opacity = '0';
