@@ -1,8 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Header scroll effect
+document.addEventListener('DOMContentLoaded', function () {
+    // Efecto de scroll en header
     const header = document.querySelector('.header');
-    
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 100) {
             header.style.background = 'rgba(255, 255, 255, 0.95)';
             header.style.backdropFilter = 'blur(10px)';
@@ -12,36 +11,37 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Menú hamburguesa (igual que en Servicios.js)
-    const menuToggle = document.getElementById("menu-toggle");
-    const navMenu = document.getElementById("nav-menu");
+    // Menú hamburguesa
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu   = document.getElementById('nav-menu');
 
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener("click", () => {
-            navMenu.classList.toggle("active");
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
 
+        // Cierra al tocar un enlace en móvil
         navMenu.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
                     navMenu.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
         });
     }
 
-    // Combo cards click effect and WhatsApp message
+    // Animaciones tarjetas (lo tuyo original)
     const comboCards = document.querySelectorAll('.combo-card');
-    
+
     comboCards.forEach(card => {
-        card.addEventListener('click', function() {
-            // Animación de click
+        card.addEventListener('click', function () {
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = 'translateY(-10px)';
             }, 150);
-            
-            // WhatsApp con precio
+
             const priceElement = this.querySelector('.combo-price');
             if (priceElement) {
                 const price = priceElement.textContent;
@@ -52,13 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Intersection Observer for entrance animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
@@ -67,20 +62,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Animación de entrada para los combos
     comboCards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(30px)';
         card.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
         observer.observe(card);
     });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = document.getElementById("menu-toggle");
-  const navMenu = document.getElementById("nav-menu");
-
-  menuToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-  });
 });
