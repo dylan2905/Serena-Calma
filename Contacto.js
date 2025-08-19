@@ -21,6 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.toggle('active');
             mobileToggle.classList.toggle('active');
         });
+
+        // Cerrar menú al hacer clic en un link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileToggle.classList.remove('active');
+            });
+        });
     }
 
     // Google Maps function - Opens in a new tab
